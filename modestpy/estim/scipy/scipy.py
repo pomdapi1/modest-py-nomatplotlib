@@ -14,8 +14,8 @@ from modestpy.fmi.model import Model
 from modestpy.estim.estpar import EstPar
 from modestpy.estim.estpar import estpars_2_df
 from modestpy.estim.error import calc_err
-import modestpy.estim.plots as plots
-import modestpy.utilities.figures as figures
+# import modestpy.estim.plots as plots
+# import modestpy.utilities.figures as figures
 
 
 class SCIPY(object):
@@ -212,49 +212,49 @@ class SCIPY(object):
         # rescaled = lo + scaled * (hi - lo)
         return lo + v * (hi - lo)
 
-    def get_plots(self):
-        """
-        Returns a list with important plots produced by this estimation method.
-        Each list element is a dictionary with keys 'name' and 'axes'. The name
-        should be given as a string, while axes as matplotlib.Axes instance.
+    # def get_plots(self):
+    #     """
+    #     Returns a list with important plots produced by this estimation method.
+    #     Each list element is a dictionary with keys 'name' and 'axes'. The name
+    #     should be given as a string, while axes as matplotlib.Axes instance.
 
-        :return: list(dict)
-        """
-        plots = list()
-        plots.append({'name': 'SCIPY-{}'.format(self.solver),
-                      'axes': self.plot_parameter_evo()})
-        return plots
+    #     :return: list(dict)
+    #     """
+    #     plots = list()
+    #     plots.append({'name': 'SCIPY-{}'.format(self.solver),
+    #                   'axes': self.plot_parameter_evo()})
+    #     return plots
 
-    def save_plots(self, workdir):
-        self.plot_comparison(os.path.join(workdir, 'ps_comparison.png'))
-        self.plot_error_evo(os.path.join(workdir, 'ps_error_evo.png'))
-        self.plot_parameter_evo(os.path.join(workdir, 'ps_param_evo.png'))
+    # def save_plots(self, workdir):
+    #     self.plot_comparison(os.path.join(workdir, 'ps_comparison.png'))
+    #     self.plot_error_evo(os.path.join(workdir, 'ps_error_evo.png'))
+    #     self.plot_parameter_evo(os.path.join(workdir, 'ps_param_evo.png'))
 
-    def plot_comparison(self, file=None):
-        return plots.plot_comparison(self.res, self.ideal, file)
+    # def plot_comparison(self, file=None):
+    #     return plots.plot_comparison(self.res, self.ideal, file)
 
-    def plot_error_evo(self, file=None):
-        err_df = pd.DataFrame(self.summary[SCIPY.ERR])
-        return plots.plot_error_evo(err_df, file)
+    # def plot_error_evo(self, file=None):
+    #     err_df = pd.DataFrame(self.summary[SCIPY.ERR])
+    #     return plots.plot_error_evo(err_df, file)
 
-    def plot_parameter_evo(self, file=None):
-        par_df = self.summary.drop([SCIPY.METHOD], axis=1)
-        par_df = par_df.rename(columns={
-            x: 'error' if x == SCIPY.ERR else x for x in par_df.columns
-            })
+    # def plot_parameter_evo(self, file=None):
+    #     par_df = self.summary.drop([SCIPY.METHOD], axis=1)
+    #     par_df = par_df.rename(columns={
+    #         x: 'error' if x == SCIPY.ERR else x for x in par_df.columns
+    #         })
 
-        # Get axes
-        axes = par_df.plot(subplots=True)
-        fig = figures.get_figure(axes)
-        # x label
-        axes[-1].set_xlabel('Iteration')
-        # ylim for error
-        axes[-1].set_ylim(0, None)
+    #     # Get axes
+    #     axes = par_df.plot(subplots=True)
+    #     fig = figures.get_figure(axes)
+    #     # x label
+    #     axes[-1].set_xlabel('Iteration')
+    #     # ylim for error
+    #     axes[-1].set_ylim(0, None)
 
-        if file:
-            fig.set_size_inches(SCIPY.FIG_SIZE)
-            fig.savefig(file, dpi=SCIPY.FIG_DPI)
-        return axes
+    #     if file:
+    #         fig.set_size_inches(SCIPY.FIG_SIZE)
+    #         fig.savefig(file, dpi=SCIPY.FIG_DPI)
+    #     return axes
 
     def get_full_solution_trajectory(self):
         """

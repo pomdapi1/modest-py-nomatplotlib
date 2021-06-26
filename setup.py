@@ -24,7 +24,7 @@ setup(
     install_requires=[
         'fmpy[complete]',
         'scipy',
-        'pandas',
+        'pandas', 
         'numpy',
         'pyDOE',
         'modestga'

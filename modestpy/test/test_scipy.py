@@ -66,21 +66,21 @@ class TestSCIPY(unittest.TestCase):
                            solver='L-BFGS-B')
         self.estimates = self.scipy.estimate()
 
-        # Generate plots
-        self.scipy.plot_comparison(os.path.join(self.tmpdir,
-                                                'scipy_comparison.png'))
-        self.scipy.plot_error_evo(os.path.join(self.tmpdir,
-                                               'scipy_error_evo.png'))
-        self.scipy.plot_parameter_evo(os.path.join(self.tmpdir,
-                                                   'scipy_param_evo.png'))
+        # # Generate plots
+        # self.scipy.plot_comparison(os.path.join(self.tmpdir,
+        #                                         'scipy_comparison.png'))
+        # self.scipy.plot_error_evo(os.path.join(self.tmpdir,
+        #                                        'scipy_error_evo.png'))
+        # self.scipy.plot_parameter_evo(os.path.join(self.tmpdir,
+        #                                            'scipy_param_evo.png'))
 
-        # Make sure plots are created
-        self.assertTrue(os.path.exists(os.path.join(self.tmpdir,
-                                                    'scipy_comparison.png')))
-        self.assertTrue(os.path.exists(os.path.join(self.tmpdir,
-                                                    'scipy_error_evo.png')))
-        self.assertTrue(os.path.exists(os.path.join(self.tmpdir,
-                                                    'scipy_param_evo.png')))
+        # # Make sure plots are created
+        # self.assertTrue(os.path.exists(os.path.join(self.tmpdir,
+        #                                             'scipy_comparison.png')))
+        # self.assertTrue(os.path.exists(os.path.join(self.tmpdir,
+        #                                             'scipy_error_evo.png')))
+        # self.assertTrue(os.path.exists(os.path.join(self.tmpdir,
+        #                                             'scipy_param_evo.png')))
 
         # Make last error is lower than initial
         errors = self.scipy.get_errors()

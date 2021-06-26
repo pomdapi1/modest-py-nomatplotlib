@@ -66,21 +66,21 @@ class TestPS(unittest.TestCase):
                      try_lim=self.try_lim)
         self.estimates = self.ps.estimate()
 
-        # Generate plots
-        self.ps.plot_comparison(os.path.join(self.tmpdir,
-                                             'ps_comparison.png'))
-        self.ps.plot_error_evo(os.path.join(self.tmpdir,
-                                            'ps_error_evo.png'))
-        self.ps.plot_parameter_evo(os.path.join(self.tmpdir,
-                                                'ps_param_evo.png'))
+        # # Generate plots
+        # self.ps.plot_comparison(os.path.join(self.tmpdir,
+        #                                      'ps_comparison.png'))
+        # self.ps.plot_error_evo(os.path.join(self.tmpdir,
+        #                                     'ps_error_evo.png'))
+        # self.ps.plot_parameter_evo(os.path.join(self.tmpdir,
+        #                                         'ps_param_evo.png'))
 
-        # Make sure plots are created
-        self.assertTrue(os.path.exists(os.path.join(self.tmpdir,
-                                                    'ps_comparison.png')))
-        self.assertTrue(os.path.exists(os.path.join(self.tmpdir,
-                                                    'ps_error_evo.png')))
-        self.assertTrue(os.path.exists(os.path.join(self.tmpdir,
-                                                    'ps_param_evo.png')))
+        # # Make sure plots are created
+        # self.assertTrue(os.path.exists(os.path.join(self.tmpdir,
+        #                                             'ps_comparison.png')))
+        # self.assertTrue(os.path.exists(os.path.join(self.tmpdir,
+        #                                             'ps_error_evo.png')))
+        # self.assertTrue(os.path.exists(os.path.join(self.tmpdir,
+        #                                             'ps_param_evo.png')))
 
         # Make sure errors do not increase
         errors = self.ps.get_errors()

@@ -18,7 +18,7 @@ from modestpy.estim.scipy.scipy import SCIPY
 from modestpy.estim.ga_parallel.ga_parallel import MODESTGA
 from modestpy.fmi.model import Model
 import modestpy.estim.error
-from modestpy.estim.plots import plot_comparison
+# from modestpy.estim.plots import plot_comparison
 import modestpy.utilities.figures as figures
 from modestpy.loginit import config_logger
 
@@ -420,12 +420,12 @@ class Estimation(object):
 
         err = modestpy.estim.error.calc_err(result, ideal_slice)
 
-        # Create validation plot
-        ax = plot_comparison(result, ideal_slice, f=None)
-        fig = figures.get_figure(ax)
-        fig.set_size_inches(Estimation.FIG_SIZE)
-        fig.savefig(os.path.join(self.workdir, 'validation.png'),
-                    dpi=Estimation.FIG_DPI)
+        # # Create validation plot
+        # ax = plot_comparison(result, ideal_slice, f=None)
+        # fig = figures.get_figure(ax)
+        # fig.set_size_inches(Estimation.FIG_SIZE)
+        # fig.savefig(os.path.join(self.workdir, 'validation.png'),
+        #             dpi=Estimation.FIG_DPI)
 
         # Return
         return err, result

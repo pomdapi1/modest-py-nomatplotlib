@@ -9,10 +9,10 @@ import os
 import random
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import pyDOE as doe
 from modestpy.estim.ga import algorithm
-import modestpy.estim.plots as plots
+# import modestpy.estim.plots as plots
 from modestpy.estim.estpar import EstPar
 from modestpy.estim.ga.population import Population
 
@@ -288,121 +288,124 @@ class GA(object):
 
         return summary
 
-    def get_plots(self):
-        """
-        Returns a list with important plots produced by this estimation method.
-        Each list element is a dictionary with keys 'name' and 'axes'. The name
-        should be given as a string, while axes as matplotlib.Axes instance.
+    # def get_plots(self):
+    #     """
+    #     Returns a list with important plots produced by this estimation method.
+    #     Each list element is a dictionary with keys 'name' and 'axes'. The name
+    #     should be given as a string, while axes as matplotlib.Axes instance.
 
-        :return: list(dict)
-        """
-        plots = list()
-        plots.append({'name': 'GA', 'axes': self.plot_pop_evo()})
-        return plots
+    #     :return: list(dict)
+    #     """
+    #     plots = list()
+    #     plots.append({'name': 'GA', 'axes': self.plot_pop_evo()})
+    #     return plots
 
-    def save_plots(self, workdir):
-        self.plot_comparison(os.path.join(workdir, 'ga_comparison.png'))
-        self.plot_error_evo(os.path.join(workdir, 'ga_error_evo.png'))
-        self.plot_parameter_evo(os.path.join(workdir, 'ga_param_evo.png'))
-        self.plot_pop_evo(os.path.join(workdir, 'ga_pop_evo.png'))
+    # def save_plots(self, workdir):
+    #     self.plot_comparison(os.path.join(workdir, 'ga_comparison.png'))
+    #     self.plot_error_evo(os.path.join(workdir, 'ga_error_evo.png'))
+    #     self.plot_parameter_evo(os.path.join(workdir, 'ga_param_evo.png'))
+    #     self.plot_pop_evo(os.path.join(workdir, 'ga_pop_evo.png'))
 
-    def plot_error_evo(self, file=None):
-        """ Returns a plot of the error evolution.
+    # def plot_error_evo(self, file=None):
+    #     """ Returns a plot of the error evolution.
 
-        :param file: string (path to the file, if None, file not created)
-        :return: Axes
-        """
-        fig, ax = plt.subplots()
-        ax.plot(self.fittest_errors)
-        ax.set_xlabel('Generation')
-        ax.set_ylabel('Error (NRMSE)')
-        if file:
-            fig = ax.get_figure()
-            fig.set_size_inches(GA.FIG_SIZE)
-            fig.savefig(file, dpi=GA.FIG_DPI)
-        return ax
+    #     :param file: string (path to the file, if None, file not created)
+    #     :return: Axes
+    #     """
+    #     fig, ax = plt.subplots()
+    #     ax.plot(self.fittest_errors)
+    #     ax.set_xlabel('Generation')
+    #     ax.set_ylabel('Error (NRMSE)')
+    #     if file:
+    #         fig = ax.get_figure()
+    #         fig.set_size_inches(GA.FIG_SIZE)
+    #         fig.savefig(file, dpi=GA.FIG_DPI)
+    #     return ax
 
-    def plot_comparison(self, file=None):
-        """
-        Creates a plot with a comparison of simulation results
-        (fittest individual) vs. measured result.
+    #     return []
 
-        :param file: string, path to the file. If ``None``, file not created.
-        :return: Axes
-        """
-        simulated = self.get_sim_res()
-        measured = self.pop.ideal.copy()
-        return plots.plot_comparison(simulated, measured, file)
+    # def plot_comparison(self, file=None):
+    #     """
+    #     Creates a plot with a comparison of simulation results
+    #     (fittest individual) vs. measured result.
 
-    def plot_parameter_evo(self, file=None):
-        """
-        Returns a plot of the parameter evolution.
+    #     :param file: string, path to the file. If ``None``, file not created.
+    #     :return: Axes
+    #     """
+    #     simulated = self.get_sim_res()
+    #     measured = self.pop.ideal.copy()
+    #     return plots.plot_comparison(simulated, measured, file)
 
-        :param file: string (path to the file, if None, file not created)
-        :return: Axes
-        """
-        parameters = self.get_full_solution_trajectory()
-        parameters = parameters.drop('generation', axis=1)
-        return plots.plot_parameter_evo(parameters, file)
+    # def plot_parameter_evo(self, file=None):
+    #     """
+    #     Returns a plot of the parameter evolution.
 
-    def plot_inputs(self, file=None):
-        """
-        Returns a plot with inputs.
+    #     :param file: string (path to the file, if None, file not created)
+    #     :return: Axes
+    #     """
+    #     parameters = self.get_full_solution_trajectory()
+    #     parameters = parameters.drop('generation', axis=1)
+    #     return plots.plot_parameter_evo(parameters, file)
 
-        :param file: string
-        :return: axes
-        """
-        inputs = self.pop.inputs
-        return plots.plot_inputs(inputs, file)
+    # def plot_inputs(self, file=None):
+    #     """
+    #     Returns a plot with inputs.
 
-    def plot_pop_evo(self, file=None):
-        """
-        Creates a plot with the evolution of all parameters as a scatter plot.
-        Can be interpreted as the *population diversity*.
-        The color of the points is darker for higher accuracy.
+    #     :param file: string
+    #     :return: axes
+    #     """
+    #     inputs = self.pop.inputs
+    #     return plots.plot_inputs(inputs, file)
 
-        :param file: string, path to the file. If ``None``, file not created.
-        :return: Axes
-        """
-        estimates = self.all_estim_and_err
-        pars = list(estimates.columns)
-        pars.remove('individual')
-        pars.remove(GA.ITER)
-        pars.remove(GA.ERR)
-        assert len(pars) > 0, 'No parameters found'
+    # def plot_pop_evo(self, file=None):
+    #     """
+    #     Creates a plot with the evolution of all parameters as a scatter plot.
+    #     Can be interpreted as the *population diversity*.
+    #     The color of the points is darker for higher accuracy.
 
-        fig, axes = plt.subplots(nrows=len(pars), sharex=True, squeeze=False)
-        fig.subplots_adjust(right=0.75)
-        i = 0
+    #     :param file: string, path to the file. If ``None``, file not created.
+    #     :return: Axes
+    #     """
+    #     estimates = self.all_estim_and_err
+    #     pars = list(estimates.columns)
+    #     pars.remove('individual')
+    #     pars.remove(GA.ITER)
+    #     pars.remove(GA.ERR)
+    #     assert len(pars) > 0, 'No parameters found'
 
-        last_err = self.fittest_errors[-1]
-        first_err = self.fittest_errors[0]
+    #     fig, axes = plt.subplots(nrows=len(pars), sharex=True, squeeze=False)
+    #     fig.subplots_adjust(right=0.75)
+    #     i = 0
 
-        for v in pars:
-            ax = axes[i,0]
-            scatter = ax.scatter(x=estimates[GA.ITER],
-                                 y=estimates[v],
-                                 c=estimates[GA.ERR],
-                                 cmap='viridis',
-                                 edgecolors='none',
-                                 vmin=last_err,
-                                 vmax=first_err,
-                                 alpha=0.25)
-            ax.set_xlim([0, estimates[GA.ITER].max() + 1])
-            ax.text(x=1.05, y=0.5, s=v,
-                    transform=ax.transAxes, fontweight='bold',
-                    horizontalalignment='center', verticalalignment='center')
-            i += 1
-        axes[-1,0].set_xlabel('Generation')
+    #     last_err = self.fittest_errors[-1]
+    #     first_err = self.fittest_errors[0]
 
-        # Color bar on the side
-        cbar_ax = fig.add_axes([0.85, 0.10, 0.05, 0.8])
-        fig.colorbar(scatter, cax=cbar_ax, label='Error')
+    #     for v in pars:
+    #         ax = axes[i,0]
+    #         scatter = ax.scatter(x=estimates[GA.ITER],
+    #                              y=estimates[v],
+    #                              c=estimates[GA.ERR],
+    #                              cmap='viridis',
+    #                              edgecolors='none',
+    #                              vmin=last_err,
+    #                              vmax=first_err,
+    #                              alpha=0.25)
+    #         ax.set_xlim([0, estimates[GA.ITER].max() + 1])
+    #         ax.text(x=1.05, y=0.5, s=v,
+    #                 transform=ax.transAxes, fontweight='bold',
+    #                 horizontalalignment='center', verticalalignment='center')
+    #         i += 1
+    #     axes[-1,0].set_xlabel('Generation')
 
-        if file:
-            fig.set_size_inches(GA.FIG_SIZE)
-            fig.savefig(file, dpi=GA.FIG_DPI)
-        return axes
+    #     # Color bar on the side
+    #     cbar_ax = fig.add_axes([0.85, 0.10, 0.05, 0.8])
+    #     fig.colorbar(scatter, cax=cbar_ax, label='Error')
+
+    #     if file:
+    #         fig.set_size_inches(GA.FIG_SIZE)
+    #         fig.savefig(file, dpi=GA.FIG_DPI)
+    #     return axes
+
 
     def _update_res(self, gen_count):
         # Save estimates
