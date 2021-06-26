@@ -6,7 +6,7 @@ from fmpy import simulate_fmu, dump, read_model_description, instantiate_fmu, ex
 from fmpy.util import read_csv, write_csv
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from modestpy.utilities.sysarch import get_sys_arch
 
 
@@ -75,5 +75,5 @@ fmu.freeInstance()
 # Result to DataFrame
 result = struct_arr_to_df(result)
 print(result)
-plt.plot(result)
-plt.show()
+# plt.plot(result)
+# plt.show()

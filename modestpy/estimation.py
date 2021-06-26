@@ -8,8 +8,8 @@ import logging
 import random
 import copy
 import os
-import matplotlib.pyplot as plt
-import matplotlib.ticker
+# import matplotlib.pyplot as plt
+# import matplotlib.ticker
 import pandas as pd
 import numpy as np
 from modestpy.estim.ga.ga import GA
@@ -302,15 +302,15 @@ class Estimation(object):
                 summary = summary.append(full_traj, verify_integrity=True)
                 summary.index.rename('_iter_', inplace=True)
 
-                # (2.4.5) Save method's plots
-                plots = m_inst.get_plots()
-                for p in plots:
-                    fig = figures.get_figure(p['axes'])
-                    fig_file = os.path.join(self.workdir, "{}_{}.png"
-                                            .format(p['name'], n))
-                    fig.set_size_inches(Estimation.FIG_SIZE)
-                    fig.savefig(fig_file, dpi=Estimation.FIG_DPI)
-                plt.close('all')
+                # # (2.4.5) Save method's plots
+                # plots = m_inst.get_plots()
+                # for p in plots:
+                #     fig = figures.get_figure(p['axes'])
+                #     fig_file = os.path.join(self.workdir, "{}_{}.png"
+                #                             .format(p['name'], n))
+                #     fig.set_size_inches(Estimation.FIG_SIZE)
+                #     fig.savefig(fig_file, dpi=Estimation.FIG_DPI)
+                # plt.close('all')
 
                 # (2.4.6) Increase method counter
                 m += 1
@@ -484,9 +484,9 @@ class Estimation(object):
             err = pd.concat([err, next_err], axis=1)
 
         # Plot
-        fig, ax = plt.subplots(1, 1, figsize=Estimation.FIG_SIZE,
-                               dpi=Estimation.FIG_DPI)
-        err.plot(ax=ax)
+        # fig, ax = plt.subplots(1, 1, figsize=Estimation.FIG_SIZE,
+        #                        dpi=Estimation.FIG_DPI)
+        # err.plot(ax=ax)
 
         # Get line colors
         lines = ax.get_lines()

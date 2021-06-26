@@ -25,7 +25,6 @@ setup(
         'fmpy[complete]',
         'scipy',
         'pandas',
-        'matplotlib',
         'numpy',
         'pyDOE',
         'modestga'
