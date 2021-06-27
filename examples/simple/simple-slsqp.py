@@ -9,7 +9,7 @@ import os
 import pandas as pd
 from modestpy.utilities.sysarch import get_sys_arch
 from modestpy.estim.scipy.scipy import SCIPY
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 
 if __name__ == "__main__":
@@ -68,7 +68,7 @@ if __name__ == "__main__":
 
     res = scipy.res
     res['ideal'] = ideal['T']
-    res.plot()
-    plt.show()
+    # res.plot()
+    # plt.show()
 
     print('ERROR={}'.format(scipy.best_err))
