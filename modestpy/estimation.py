@@ -346,9 +346,9 @@ class Estimation(object):
             s.to_csv(sfile)
 
         # (5) Save error plot including all learning periods
-        ax = self._plot_error_per_run(summary_list, err_type=self.ftype)
-        fig = figures.get_figure(ax)
-        fig.savefig(os.path.join(self.workdir, 'errors.png'))
+        # ax = self._plot_error_per_run(summary_list, err_type=self.ftype)
+        # fig = figures.get_figure(ax)
+        # fig.savefig(os.path.join(self.workdir, 'errors.png'))
 
         # (6) Assign results to instance attributes
         self.best_per_run = best_per_run
@@ -471,50 +471,50 @@ class Estimation(object):
                 opts[key] = new_opts[key]
         return opts
 
-    def _plot_error_per_run(self, summary_list, err_type):
-        """
-        :param list(DataFrame) summary_list: Summary list
-        :param str err_type: Error type
-        :return: Axes
-        """
-        # Error evolution per estimation run
-        err = pd.DataFrame()
-        for s, n in zip(summary_list, range(1, len(summary_list) + 1)):
-            next_err = pd.Series(data=s['_error_'], name='error #{}'.format(n))
-            err = pd.concat([err, next_err], axis=1)
+    # def _plot_error_per_run(self, summary_list, err_type):
+    #     """
+    #     :param list(DataFrame) summary_list: Summary list
+    #     :param str err_type: Error type
+    #     :return: Axes
+    #     """
+    #     # Error evolution per estimation run
+    #     err = pd.DataFrame()
+    #     for s, n in zip(summary_list, range(1, len(summary_list) + 1)):
+    #         next_err = pd.Series(data=s['_error_'], name='error #{}'.format(n))
+    #         err = pd.concat([err, next_err], axis=1)
 
-        # Plot
-        # fig, ax = plt.subplots(1, 1, figsize=Estimation.FIG_SIZE,
-        #                        dpi=Estimation.FIG_DPI)
-        # err.plot(ax=ax)
+    #     Plot
+    #     fig, ax = plt.subplots(1, 1, figsize=Estimation.FIG_SIZE,
+    #                            dpi=Estimation.FIG_DPI)
+    #     err.plot(ax=ax)
 
-        # Get line colors
-        # lines = ax.get_lines()
-        # colors = [l.get_color() for l in lines]
+    #     Get line colors
+    #     lines = ax.get_lines()
+    #     colors = [l.get_color() for l in lines]
 
-        # Method switch marks
-        xloc, yloc = self._get_method_switch_xy(summary_list)
+    #     # Method switch marks
+    #     xloc, yloc = self._get_method_switch_xy(summary_list)
 
-        # In cases there is more switches than lines
-        mltp = len(xloc) // len(colors)
+    #     # In cases there is more switches than lines
+    #     mltp = len(xloc) // len(colors)
 
-        if mltp > 1:
-            colors_copy = copy.copy(colors)
-            colors = list()
-            for c in colors_copy:
-                for i in range(mltp):
-                    colors.append(c)
+    #     if mltp > 1:
+    #         colors_copy = copy.copy(colors)
+    #         colors = list()
+    #         for c in colors_copy:
+    #             for i in range(mltp):
+    #                 colors.append(c)
 
-        for x, y, c in zip(xloc, yloc, colors * mltp):
-            ax.scatter(x, y, marker='o', c='white', edgecolors=c, lw=1.5,
-                       zorder=10)
+    #     for x, y, c in zip(xloc, yloc, colors * mltp):
+    #         ax.scatter(x, y, marker='o', c='white', edgecolors=c, lw=1.5,
+    #                    zorder=10)
 
-        # Formatting
-        ax.set_xlabel("Iterations")
-        ax.set_ylabel("Error ({})".format(err_type))
-        ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(integer=True))
+    #     # Formatting
+    #     ax.set_xlabel("Iterations")
+    #     ax.set_ylabel("Error ({})".format(err_type))
+    #     ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(integer=True))
 
-        return ax
+    #     return ax
 
     def _get_method_switch_xy(self, summary_list):
         """
