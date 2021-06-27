@@ -103,21 +103,15 @@ class Estimation(object):
 
         self.logger = logging.getLogger(type(self).__name__)
 
-        print("ESTIMATION 1", flush=True)
-
         # Sanity checks
         assert inp.index.equals(ideal.index), \
             'inp and ideal indexes are not matching'
-
-        print("ESTIMATION 2", flush=True)
 
         init, lo, hi = 0, 1, 2  # Init. value, lower bound, upper bound indices
         for v in est:
             assert (est[v][init] >= est[v][lo])  \
                 and (est[v][init] <= est[v][hi]), \
                 'Initial value out of limits ({})'.format(v)
-
-        print("ESTIMATION 3", flush=True)
 
         # Input data
         self.workdir = workdir
@@ -202,8 +196,6 @@ class Estimation(object):
             'SCIPY': (SCIPY, self.SCIPY_OPTS)
 
         }  # Key -> method name, value -> (method class, method options)
-
-        print("ESTIMATION 4", flush=True)
 
         # List of learning periods (tuples with start, stop)
         self.lp = self._select_lp(lp_n, lp_len, lp_frame)
@@ -497,8 +489,8 @@ class Estimation(object):
         # err.plot(ax=ax)
 
         # Get line colors
-        lines = ax.get_lines()
-        colors = [l.get_color() for l in lines]
+        # lines = ax.get_lines()
+        # colors = [l.get_color() for l in lines]
 
         # Method switch marks
         xloc, yloc = self._get_method_switch_xy(summary_list)
