@@ -13,8 +13,8 @@ setup(
     packages=[
         'modestpy',
         'modestpy.estim',
-        'modestpy.estim.ga_parallel',
-        'modestpy.estim.ga',
+        # 'modestpy.estim.ga_parallel',
+        # 'modestpy.estim.ga',
         'modestpy.estim.ps',
         'modestpy.estim.scipy',
         'modestpy.fmi',
@@ -27,7 +27,7 @@ setup(
         'pandas', 
         'numpy',
         'pyDOE',
-        'modestga'
+        # 'modestga'
     ],
     classifiers=[
         'Programming Language :: Python :: 3'
