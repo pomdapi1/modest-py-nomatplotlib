@@ -191,7 +191,7 @@ class Estimation(object):
         # Method dictionary
         self.method_dict = {
             # 'MODESTGA': (MODESTGA, self.MODESTGA_OPTS),
-            'GA_LEGACY': (GA, self.GA_OPTS),
+            # 'GA_LEGACY': (GA, self.GA_OPTS),
             'PS': (PS, self.PS_OPTS),
             'SCIPY': (SCIPY, self.SCIPY_OPTS)
 
