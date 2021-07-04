@@ -2,9 +2,9 @@ from setuptools import setup
 
 setup(
     name='modestpy',
-    version='0.1',
+    version='1.1',
     description='FMI-compliant model identification package',
-    url='https://github.com/sdu-cfei/modest-py',
+    url='https://github.com/pomdapi1/modest-py-nomatplotlib.git',
     keywords='fmi fmu optimization model identification estimation',
     author='Krzysztof Arendt, Center for Energy Informatics SDU',
     author_email='krzysztof.arendt@gmail.com, veje@mmmi.sdu.dk',
