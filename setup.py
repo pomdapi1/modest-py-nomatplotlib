@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='modestpy',
+    name='modestpy2',
     version='1.1',
     description='FMI-compliant model identification package',
     url='https://github.com/pomdapi1/modest-py-nomatplotlib.git',
@@ -20,14 +20,14 @@ setup(
     #     'modestpy.fmi',
     #     'modestpy.utilities',
     #     'modestpy.test'],
-    include_package_data=True,
-    install_requires=[
-        'fmpy[complete]',
-        'scipy',
-        'pandas', 
-        'numpy',
-        'pyDOE',
-    ],
+    # include_package_data=True,
+    # install_requires=[
+    #     'fmpy[complete]',
+    #     'scipy',
+    #     'pandas', 
+    #     'numpy',
+    #     'pyDOE',
+    # ],
     classifiers=[
         'Programming Language :: Python :: 3'
     ]
