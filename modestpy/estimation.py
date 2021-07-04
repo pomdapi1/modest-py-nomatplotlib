@@ -12,7 +12,7 @@ import os
 # import matplotlib.ticker
 import pandas as pd
 import numpy as np
-from modestpy.estim.ga.ga import GA
+# from modestpy.estim.ga.ga import GA
 from modestpy.estim.ps.ps import PS
 from modestpy.estim.scipy.scipy import SCIPY
 # from modestpy.estim.ga_parallel.ga_parallel import MODESTGA
