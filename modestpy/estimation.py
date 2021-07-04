@@ -172,25 +172,25 @@ class Estimation(object):
         self.SCIPY_OPTS = \
             self._update_opts(self.SCIPY_OPTS, scipy_opts, 'SCIPY')
 
-        # MODESTGA options
-        self.MODESTGA_OPTS = {
-            'workers': 3,              # CPU cores to use
-            'generations': 50,         # Max. number of generations
-            'pop_size': 30,            # Population size
-            'mut_rate': 0.01,          # Mutation rate
-            'trm_size': 3,             # Tournament size
-            'tol': 1e-3,               # Solution tolerance
-            'inertia': 100,            # Max. number of non-improving generations
-            'ftype': ftype
-        }  # Default
+        # # MODESTGA options
+        # self.MODESTGA_OPTS = {
+        #     'workers': 3,              # CPU cores to use
+        #     'generations': 50,         # Max. number of generations
+        #     'pop_size': 30,            # Population size
+        #     'mut_rate': 0.01,          # Mutation rate
+        #     'trm_size': 3,             # Tournament size
+        #     'tol': 1e-3,               # Solution tolerance
+        #     'inertia': 100,            # Max. number of non-improving generations
+        #     'ftype': ftype
+        # }  # Default
 
-        # User options
-        self.MODESTGA_OPTS = \
-            self._update_opts(self.MODESTGA_OPTS, modestga_opts, 'MODESTGA')
+        # # User options
+        # self.MODESTGA_OPTS = \
+        #     self._update_opts(self.MODESTGA_OPTS, modestga_opts, 'MODESTGA')
 
         # Method dictionary
         self.method_dict = {
-            'MODESTGA': (MODESTGA, self.MODESTGA_OPTS),
+            # 'MODESTGA': (MODESTGA, self.MODESTGA_OPTS),
             'GA_LEGACY': (GA, self.GA_OPTS),
             'PS': (PS, self.PS_OPTS),
             'SCIPY': (SCIPY, self.SCIPY_OPTS)
